@@ -18,9 +18,11 @@ namespace Axel_ReseauSocial.Api.Models
         public bool Actif { get; set; }
         public int RoleId { get; set; }
         public int LocaliteId { get; set; }
+        public int TravailId { get; set; }
 
         // Propriétés de navigations
         public virtual Role Role { get; set; }
         public virtual Localite Localite { get; set; }
+        public virtual Travail Travail { get; set; }
     }
 }

@@ -12,13 +12,11 @@ namespace GenerateData
         static void Main(string[] args)
         {
             using ReseauSocialDbContext dbContext = new ReseauSocialDbContext();
-            #region Ajout des localités
-            /*using ReseauSocialDbContext dbContext = new ReseauSocialDbContext();
 
-            #region Ajout des Localites
+            #region Ajout des localités
             using TextReader textReader = File.OpenText(@"c:\Data\code-postaux-belge.csv");
 
-            //Eliminer la ligne titre
+            // Eliminer la ligne titre
             textReader.ReadLine();
 
             var localites = new List<Localite>();
@@ -42,19 +40,12 @@ namespace GenerateData
 
             dbContext.Localites.AddRange(localites);
             dbContext.SaveChanges();
-        }
-
-        private static NumberFormatInfo GetNumberFormatInfo()
-        {
-            NumberFormatInfo numberFormatInfo = new NumberFormatInfo();
-            numberFormatInfo.NumberDecimalSeparator = ",";
-            return numberFormatInfo;
-        }*/
             #endregion
 
             #region AddAdmin
             Role userRole = dbContext.Roles.First(r => r.Denomination == "Admin");
             Localite userLocalite = dbContext.Localites.First(l => l.Ville == "Jumet");
+            Travail userTravail = dbContext.Travail.First(t => t.Denomination == "Programmeur Web");
 
             Utilisateur utilisateur = new Utilisateur()
             {
@@ -62,16 +53,24 @@ namespace GenerateData
                 Prenom = "Axel",
                 Email = "axel.bauduin@gmail.com",
                 Passwd = "Test1234=",
-                Sexe ="Masculin",
+                Sexe = "Masculin",
                 Date = DateTime.Now,
                 Actif = true,
                 Localite = userLocalite,
-                Role = userRole
+                Role = userRole,
+                Travail = userTravail,
             };
 
             dbContext.Add(utilisateur);
             dbContext.SaveChanges();
             #endregion
+        }
+
+        private static NumberFormatInfo GetNumberFormatInfo()
+        {
+            NumberFormatInfo numberFormatInfo = new NumberFormatInfo();
+            numberFormatInfo.NumberDecimalSeparator = ",";
+            return numberFormatInfo;
         }
     }
 }
