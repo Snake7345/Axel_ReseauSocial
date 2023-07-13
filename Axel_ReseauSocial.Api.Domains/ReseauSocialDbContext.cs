@@ -11,6 +11,7 @@ namespace Axel_ReseauSocial.Api.Domains
     {
         public DbSet<Localite> Localites { get { return Set<Localite>(); } }
         public DbSet<Role> Roles { get { return Set<Role>(); } }
+        public DbSet<Utilisateur> Utilisateurs { get { return Set<Utilisateur>(); } }
 
         public ReseauSocialDbContext()
         {
@@ -27,6 +28,7 @@ namespace Axel_ReseauSocial.Api.Domains
         {
             modelBuilder.ApplyConfiguration(new LocaliteConfig());
             modelBuilder.ApplyConfiguration(new RoleConfig());
+            modelBuilder.ApplyConfiguration(new UtilisateurConfig());
         }
 
         //Constructeur appelé par l'injection de dépendence de l'api

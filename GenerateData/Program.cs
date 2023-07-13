@@ -52,7 +52,26 @@ namespace GenerateData
         }*/
             #endregion
 
+            #region AddAdmin
+            Role userRole = dbContext.Roles.First(r => r.Denomination == "Admin");
+            Localite userLocalite = dbContext.Localites.First(l => l.Ville == "Jumet");
 
+            Utilisateur utilisateur = new Utilisateur()
+            {
+                Nom = "Bauduin",
+                Prenom = "Axel",
+                Email = "axel.bauduin@gmail.com",
+                Passwd = "Test1234=",
+                Sexe ="Masculin",
+                Date = DateTime.Now,
+                Actif = true,
+                Localite = userLocalite,
+                Role = userRole
+            };
+
+            dbContext.Add(utilisateur);
+            dbContext.SaveChanges();
+            #endregion
         }
     }
 }
