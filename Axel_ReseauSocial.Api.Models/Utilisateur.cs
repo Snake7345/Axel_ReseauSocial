@@ -15,7 +15,7 @@ namespace Axel_ReseauSocial.Api.Models
         public string? Passwd { get; set; }
         public string Sexe { get; set; }
         public DateTime Date { get; set; }
-        public bool Actif { get; set; }
+        public bool? Actif { get; set; }
         public int RoleId { get; set; }
         public int LocaliteId { get; set; }
         public int TravailId { get; set; }

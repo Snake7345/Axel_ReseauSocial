@@ -49,7 +49,8 @@ namespace Axel_ReseauSocial.Api.Domains.Configurations
 
             builder.Property(u => u.Actif)
                 .IsRequired()
-                .HasColumnType("BIT");
+                .HasColumnType("BIT")
+                .HasDefaultValue(true);
 
             builder.HasOne(u => u.Localite)
                 .WithMany()

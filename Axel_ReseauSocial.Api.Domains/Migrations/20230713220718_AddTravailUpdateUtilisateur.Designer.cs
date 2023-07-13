@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Axel_ReseauSocial.Api.Domains.Migrations
 {
     [DbContext(typeof(ReseauSocialDbContext))]
-    [Migration("20230713205015_AddTravailUpdateUtilisateur")]
+    [Migration("20230713220718_AddTravailUpdateUtilisateur")]
     partial class AddTravailUpdateUtilisateur
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -110,8 +110,11 @@ namespace Axel_ReseauSocial.Api.Domains.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasDefaultValueSql("NEWSEQUENTIALID()");
 
-                    b.Property<bool>("Actif")
-                        .HasColumnType("BIT");
+                    b.Property<bool?>("Actif")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("BIT")
+                        .HasDefaultValue(true);
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("DATETIME");

@@ -8,6 +8,15 @@ namespace Axel_ReseauSocial.Api.Domains.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.AlterColumn<bool>(
+                name: "Actif",
+                table: "Utilisateur",
+                type: "BIT",
+                nullable: false,
+                defaultValue: true,
+                oldClrType: typeof(bool),
+                oldType: "BIT");
+
             migrationBuilder.AddColumn<int>(
                 name: "TravailId",
                 table: "Utilisateur",
@@ -62,6 +71,15 @@ namespace Axel_ReseauSocial.Api.Domains.Migrations
             migrationBuilder.DropColumn(
                 name: "TravailId",
                 table: "Utilisateur");
+
+            migrationBuilder.AlterColumn<bool>(
+                name: "Actif",
+                table: "Utilisateur",
+                type: "BIT",
+                nullable: false,
+                oldClrType: typeof(bool),
+                oldType: "BIT",
+                oldDefaultValue: true);
         }
     }
 }

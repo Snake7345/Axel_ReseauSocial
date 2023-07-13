@@ -55,7 +55,6 @@ namespace GenerateData
                 Passwd = "Test1234=",
                 Sexe = "Masculin",
                 Date = DateTime.Now,
-                Actif = true,
                 Localite = userLocalite,
                 Role = userRole,
                 Travail = userTravail,

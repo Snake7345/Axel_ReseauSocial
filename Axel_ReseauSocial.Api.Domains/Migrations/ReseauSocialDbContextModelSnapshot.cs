@@ -108,8 +108,11 @@ namespace Axel_ReseauSocial.Api.Domains.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasDefaultValueSql("NEWSEQUENTIALID()");
 
-                    b.Property<bool>("Actif")
-                        .HasColumnType("BIT");
+                    b.Property<bool?>("Actif")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("BIT")
+                        .HasDefaultValue(true);
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("DATETIME");
