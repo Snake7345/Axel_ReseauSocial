@@ -12,6 +12,8 @@ namespace GenerateData
         static void Main(string[] args)
         {
             using ReseauSocialDbContext dbContext = new ReseauSocialDbContext();
+            #region Ajout des localités
+            /*using ReseauSocialDbContext dbContext = new ReseauSocialDbContext();
 
             #region Ajout des Localites
             using TextReader textReader = File.OpenText(@"c:\Data\code-postaux-belge.csv");
@@ -47,7 +49,10 @@ namespace GenerateData
             NumberFormatInfo numberFormatInfo = new NumberFormatInfo();
             numberFormatInfo.NumberDecimalSeparator = ",";
             return numberFormatInfo;
+        }*/
+            #endregion
+
+
         }
-#endregion
     }
 }
