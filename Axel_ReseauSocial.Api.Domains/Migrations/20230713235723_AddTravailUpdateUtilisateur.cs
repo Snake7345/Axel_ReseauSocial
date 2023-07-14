@@ -30,17 +30,12 @@ namespace Axel_ReseauSocial.Api.Domains.Migrations
                 {
                     IdTravail = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Denomination = table.Column<string>(type: "NVARCHAR(100)", nullable: false)
+                    Denomination = table.Column<string>(type: "NVARCHAR(255)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Travail", x => x.IdTravail);
                 });
-
-            migrationBuilder.InsertData(
-                table: "Travail",
-                columns: new[] { "IdTravail", "Denomination" },
-                values: new object[] { 1, "Programmeur Web" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Utilisateur_TravailId",

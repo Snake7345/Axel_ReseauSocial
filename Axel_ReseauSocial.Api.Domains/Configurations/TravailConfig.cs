@@ -22,9 +22,7 @@ namespace Axel_ReseauSocial.Api.Domains.Configurations
 
             builder.Property(t => t.Denomination)
                 .IsRequired()
-                .HasColumnType("NVARCHAR(100)");
-
-            builder.HasData(new Travail() { IdTravail = 1, Denomination = "Programmeur Web" });
+                .HasColumnType("NVARCHAR(255)");
         }
     }
 }

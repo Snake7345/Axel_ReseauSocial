@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Axel_ReseauSocial.Api.Domains.Migrations
 {
     [DbContext(typeof(ReseauSocialDbContext))]
-    [Migration("20230713220718_AddTravailUpdateUtilisateur")]
+    [Migration("20230713235723_AddTravailUpdateUtilisateur")]
     partial class AddTravailUpdateUtilisateur
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -89,18 +89,11 @@ namespace Axel_ReseauSocial.Api.Domains.Migrations
 
                     b.Property<string>("Denomination")
                         .IsRequired()
-                        .HasColumnType("NVARCHAR(100)");
+                        .HasColumnType("NVARCHAR(255)");
 
                     b.HasKey("IdTravail");
 
                     b.ToTable("Travail", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            IdTravail = 1,
-                            Denomination = "Programmeur Web"
-                        });
                 });
 
             modelBuilder.Entity("Axel_ReseauSocial.Api.Models.Utilisateur", b =>

@@ -87,18 +87,11 @@ namespace Axel_ReseauSocial.Api.Domains.Migrations
 
                     b.Property<string>("Denomination")
                         .IsRequired()
-                        .HasColumnType("NVARCHAR(100)");
+                        .HasColumnType("NVARCHAR(255)");
 
                     b.HasKey("IdTravail");
 
                     b.ToTable("Travail", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            IdTravail = 1,
-                            Denomination = "Programmeur Web"
-                        });
                 });
 
             modelBuilder.Entity("Axel_ReseauSocial.Api.Models.Utilisateur", b =>
