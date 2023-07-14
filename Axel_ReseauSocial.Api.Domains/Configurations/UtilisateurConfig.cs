@@ -60,8 +60,8 @@ namespace Axel_ReseauSocial.Api.Domains.Configurations
                 .WithMany()
                 .OnDelete(DeleteBehavior.NoAction);
             builder.HasOne(u => u.Travail)
-            .WithMany()
-            .OnDelete(DeleteBehavior.NoAction);
+                .WithMany()
+                .OnDelete(DeleteBehavior.NoAction);
 
             builder.HasIndex(u => u.Email)
                 .IsUnique();
