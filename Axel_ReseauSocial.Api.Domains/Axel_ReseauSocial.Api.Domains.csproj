@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Axel_ReseauSocial.Api.Models\Axel_ReseauSocial.Api.Models.csproj" />
+    <ProjectReference Include="..\Tools.Cqs\Tools.Cqs.csproj" />
   </ItemGroup>
 
 </Project>

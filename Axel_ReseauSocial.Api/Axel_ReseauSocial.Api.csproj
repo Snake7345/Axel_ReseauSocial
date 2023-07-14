@@ -18,4 +18,8 @@
     <ProjectReference Include="..\Axel_ReseauSocial.Api.Domains\Axel_ReseauSocial.Api.Domains.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Mappers\" />
+  </ItemGroup>
+
 </Project>

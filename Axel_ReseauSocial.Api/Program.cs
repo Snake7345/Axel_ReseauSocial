@@ -1,3 +1,7 @@
+using Axel_ReseauSocial.Api.Domains;
+using Axel_ReseauSocial.Api.Domains.Repositories;
+using Axel_ReseauSocial.Api.Domains.Services;
+
 namespace Axel_ReseauSocial.Api
 {
     public class Program
@@ -9,7 +13,8 @@ namespace Axel_ReseauSocial.Api
             // Add services to the container.
 
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+            builder.Services.AddDbContext<ReseauSocialDbContext>();
+            builder.Services.AddScoped<IUtilisateurRepository,UtilisateurService>();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
@@ -26,6 +31,7 @@ namespace Axel_ReseauSocial.Api
 
             app.UseAuthorization();
 
+            app.UseCors("AllowAll"); // Add this line to enable CORS
 
             app.MapControllers();
 
