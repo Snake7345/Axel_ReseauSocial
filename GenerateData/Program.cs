@@ -100,20 +100,6 @@ namespace GenerateData
             dbContext.SaveChanges();
             #endregion
         }
-
-        private static string GetCellValue(Cell cell, WorkbookPart workbookPart)
-        {
-            if (cell.DataType != null && cell.DataType.Value == CellValues.SharedString)
-            {
-                SharedStringTablePart sharedStringPart = workbookPart.SharedStringTablePart;
-                if (sharedStringPart != null)
-                {
-                    return sharedStringPart.SharedStringTable.ElementAt(int.Parse(cell.CellValue.Text)).InnerText;
-                }
-            }
-
-            return cell.CellValue?.Text;
-        }
         private static NumberFormatInfo GetNumberFormatInfo()
         {
             NumberFormatInfo numberFormatInfo = new NumberFormatInfo();

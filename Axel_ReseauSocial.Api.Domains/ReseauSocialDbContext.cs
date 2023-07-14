@@ -13,6 +13,7 @@ namespace Axel_ReseauSocial.Api.Domains
         public DbSet<Role> Roles { get { return Set<Role>(); } }
         public DbSet<Travail> Travail { get { return Set<Travail>(); } }
         public DbSet<Utilisateur> Utilisateurs { get { return Set<Utilisateur>(); } }
+        public DbSet<Pv> Pvs { get { return Set<Pv>(); } }
 
         public ReseauSocialDbContext()
         {
@@ -31,6 +32,7 @@ namespace Axel_ReseauSocial.Api.Domains
             modelBuilder.ApplyConfiguration(new RoleConfig());
             modelBuilder.ApplyConfiguration(new TravailConfig());
             modelBuilder.ApplyConfiguration(new UtilisateurConfig());
+            modelBuilder.ApplyConfiguration(new PvConfig());
         }
 
         //Constructeur appelé par l'injection de dépendence de l'api
