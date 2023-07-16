@@ -1,1 +1,1 @@
-Tout ce qui put, delete, update,... => Tout ce qui modifie la DB
+Tout ce qui peut être put, delete, update,... => Tout ce qui modifie la DB

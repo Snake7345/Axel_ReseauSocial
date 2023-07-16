@@ -43,7 +43,8 @@ namespace Axel_ReseauSocial.Api.Domains.Services
                 _context.SaveChanges();
                 return Result.Success();
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 return Result.Failure($"L\'insertion de l\'entité {nameof(Utilisateur)} a echouée");
             }
 
@@ -51,7 +52,18 @@ namespace Axel_ReseauSocial.Api.Domains.Services
 
         public IEnumerable<Utilisateur> Execute(GetAllUtilisateursQuery query)
         {
-            return _context.Utilisateurs.Include(t => t.Travail).Include(r=>r.Role).Include(l=>l.Localite).ToList();
+            return _context.Utilisateurs.Include(t => t.Travail).Include(r => r.Role).Include(l => l.Localite).ToList();
+        }
+
+        public Utilisateur? Execute(GetOneUtilisateurQuery query)
+        {
+                var utilisateur = _context.Utilisateurs
+                    .Include(t => t.Travail)
+                    .Include(r => r.Role)
+                    .Include(l => l.Localite)
+                    .FirstOrDefault(u => u.IdUtilisateur == query.Id);
+
+                return utilisateur;
         }
     }
 }

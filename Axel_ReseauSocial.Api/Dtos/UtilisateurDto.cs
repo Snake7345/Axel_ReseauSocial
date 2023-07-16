@@ -8,13 +8,12 @@ namespace Axel_ReseauSocial.Api.Dtos
         public string Nom { get; set; }
         public string Prenom { get; set; }
         public string Email { get; set; }
-        public string? Passwd { get; set; }
         public string Sexe { get; set; }
         public DateTime Date { get; set; }
         public bool? Actif { get; set; }
-        public RoleDto RoleId { get; set; }
-        public LocaliteDto LocaliteId { get; set; }
-        public TravailDto TravailId { get; set; }
+        public RoleDto Role { get; set; }
+        public LocaliteDto Localite { get; set; }
+        public TravailDto Travail { get; set; }
 
     }
 }

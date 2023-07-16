@@ -7,6 +7,8 @@ using System;
 using Axel_ReseauSocial.Api.Domains.Commands;
 using Tools.Cqs.Commands;
 using Axel_ReseauSocial.Api.Domains.Queries;
+using Axel_ReseauSocial.Api.Mappers;
+using Axel_ReseauSocial.Api.Dtos;
 
 namespace Axel_ReseauSocial.Api.Controllers
 {
@@ -38,83 +40,19 @@ namespace Axel_ReseauSocial.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Utilisateur>>> GetUtilisateurs()
         {
-            return Ok(_utilisateurRepository.Execute(new GetAllUtilisateursQuery()));
+            return Ok(_utilisateurRepository.Execute(new GetAllUtilisateursQuery()).ToUtilisateurDto());
         }
 
-        /*// GET: api/Utilisateur/{id}
         [HttpGet("{id}")]
-        public async Task<ActionResult<Utilisateur>> GetUtilisateur(Guid id)
+        public async Task<ActionResult<Utilisateur?>> GetUtilisateur(Guid id)
         {
-            var utilisateur = await _context.Utilisateur.FindAsync(id);
-
-            if (utilisateur == null)
+            UtilisateurDto? user = _utilisateurRepository.Execute(new GetOneUtilisateurQuery(id))?.ToUtilisateurDto();
+            if(user is null)
             {
-                return NotFound();
+                return NotFound(new { message= "Utilisateur pas trouvé" } );
             }
-
-            return utilisateur;
+            return Ok(user);
         }
 
-        // POST: api/Utilisateur
-        [HttpPost]
-        public async Task<ActionResult<Utilisateur>> CreateUtilisateur(Utilisateur utilisateur)
-        {
-            _context.Utilisateur.Add(utilisateur);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetUtilisateur", new { id = utilisateur.IdUtilisateur }, utilisateur);
-        }
-
-        // PUT: api/Utilisateur/{id}
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateUtilisateur(Guid id, Utilisateur utilisateur)
-        {
-            if (id != utilisateur.IdUtilisateur)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(utilisateur).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UtilisateurExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // DELETE: api/Utilisateur/{id}
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUtilisateur(Guid id)
-        {
-            var utilisateur = await _context.Utilisateur.FindAsync(id);
-            if (utilisateur == null)
-            {
-                return NotFound();
-            }
-
-            _context.Utilisateur.Remove(utilisateur);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool UtilisateurExists(Guid id)
-        {
-            return _context.Utilisateur.Any(e => e.IdUtilisateur == id);
-        }
-    }*/
-}
+    }
 }
