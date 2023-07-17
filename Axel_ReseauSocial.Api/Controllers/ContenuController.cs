@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Axel_ReseauSocial.Api.Domains.Repositories;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Axel_ReseauSocial.Api.Controllers
 {
@@ -6,5 +7,11 @@ namespace Axel_ReseauSocial.Api.Controllers
     [ApiController]
     public class ContenuController : ControllerBase
     {
+        private readonly IContenuRepository _contenuRepository;
+
+        public ContenuController(IContenuRepository contenuRepository)
+        {
+            _contenuRepository = contenuRepository;
+        }
     }
 }

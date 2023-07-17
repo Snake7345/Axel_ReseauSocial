@@ -1,4 +1,4 @@
-﻿using Axel_ReseauSocial.Api.Domains.Queries.Utilisateur;
+﻿using Axel_ReseauSocial.Api.Domains.Queries.Utilisateurs;
 using Axel_ReseauSocial.Api.Domains.Repositories;
 using Axel_ReseauSocial.Api.Models;
 using Microsoft.EntityFrameworkCore;

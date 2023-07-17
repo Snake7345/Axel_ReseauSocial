@@ -43,5 +43,14 @@ namespace Axel_ReseauSocial.Api.Mappers
                 }
             };
         }
+        internal static IEnumerable<AmitieDto> ToAmitieDto(this IEnumerable<Amitie> amities)
+        {
+            List<AmitieDto> result = new List<AmitieDto>();
+            foreach (Amitie amitie in amities)
+            {
+                result.Add(amitie.ToAmitieDto());
+            }
+            return result;
+        }
     }
 }

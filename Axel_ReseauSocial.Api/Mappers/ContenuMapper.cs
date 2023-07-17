@@ -139,12 +139,12 @@ namespace Axel_ReseauSocial.Api.Mappers
                 }
             };
         }
-        internal static IEnumerable<LocaliteDto> ToLocaliteDto(this IEnumerable<Localite> localites)
+        internal static IEnumerable<ContenuDto> ToContenuDto(this IEnumerable<Contenu> contenus)
         {
-            List<LocaliteDto> result = new List<LocaliteDto>();
-            foreach (Localite localite in localites)
+            List<ContenuDto> result = new List<ContenuDto>();
+            foreach (Contenu contenu in contenus)
             {
-                result.Add(localite.ToLocaliteDto());
+                result.Add(contenu.ToContenuDto());
             }
             return result;
         }
