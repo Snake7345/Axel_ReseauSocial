@@ -3,6 +3,8 @@ using Axel_ReseauSocial.Api.Models;
 
 namespace Axel_ReseauSocial.Api.Mappers
 {
+
+    // Le role du mapper : Transformer l'information, Il passe par le mapper avant de passer par le dto
     static internal class UtilisateurMapper
     {
         internal static UtilisateurDto ToUtilisateurDto(this Utilisateur utilisateur) {

@@ -15,7 +15,7 @@ namespace Axel_ReseauSocial.Api.Domains.Tools
                 return Array.Empty<byte>();
 
             // Génération du pré-salage
-            byte[] salt = GenerateSalt();
+            byte[] salt = new byte[] { 0x7B, 0xE1, 0x42, 0x9C, 0x83, 0x2F, 0xA0, 0xC6, 0x19, 0xD4, 0x1F, 0xB8, 0xE7, 0x7A, 0x3C, 0x6D };
 
             using (SHA512 sha512 = SHA512.Create())
             {
@@ -28,18 +28,6 @@ namespace Axel_ReseauSocial.Api.Domains.Tools
                 // Calcul du hachage
                 byte[] hashedBytes = sha512.ComputeHash(saltedValueBytes);
                 return hashedBytes;
-            }
-        }
-
-        private static byte[] GenerateSalt()
-        {
-            const int saltSize = 16; // Taille du pré-salage en octets
-
-            using (RandomNumberGenerator rng = RandomNumberGenerator.Create())
-            {
-                byte[] salt = new byte[saltSize];
-                rng.GetBytes(salt);
-                return salt;
             }
         }
 
