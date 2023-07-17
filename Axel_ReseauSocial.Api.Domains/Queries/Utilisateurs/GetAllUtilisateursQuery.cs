@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Tools.Cqs.Queries;
 
-namespace Axel_ReseauSocial.Api.Domains.Queries.Utilisateur
+namespace Axel_ReseauSocial.Api.Domains.Queries.Utilisateurs
 {
     public class GetAllUtilisateursQuery : IQuery<IEnumerable<Utilisateur>>
     {
