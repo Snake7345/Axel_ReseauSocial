@@ -1,4 +1,4 @@
-﻿using Axel_ReseauSocial.Api.Domains.Commands;
+﻿using Axel_ReseauSocial.Api.Domains.Commands.Utilisateurs;
 using Axel_ReseauSocial.Api.Domains.Queries.Utilisateurs;
 using Axel_ReseauSocial.Api.Models;
 using System;

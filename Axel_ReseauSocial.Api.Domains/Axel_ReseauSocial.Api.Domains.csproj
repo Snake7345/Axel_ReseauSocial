@@ -15,4 +15,8 @@
     <ProjectReference Include="..\Tools.Cqs\Tools.Cqs.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Commands\Localites\" />
+  </ItemGroup>
+
 </Project>

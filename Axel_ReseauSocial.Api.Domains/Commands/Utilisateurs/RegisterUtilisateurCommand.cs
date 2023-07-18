@@ -1,6 +1,6 @@
 ﻿using Tools.Cqs.Commands;
 
-namespace Axel_ReseauSocial.Api.Domains.Commands
+namespace Axel_ReseauSocial.Api.Domains.Commands.Utilisateurs
 {
     // C'est tout ce que l'entity a besoin pour pouvoir enregistrer un user, sans les propriétés définies à l'avance par le programme
     public class RegisterUtilisateurCommand : ICommand

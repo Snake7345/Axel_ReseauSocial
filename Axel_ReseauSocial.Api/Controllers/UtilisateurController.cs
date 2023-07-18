@@ -7,6 +7,7 @@ using Axel_ReseauSocial.Api.Domains.Commands;
 using Tools.Cqs.Commands;
 using Axel_ReseauSocial.Api.Mappers;
 using Axel_ReseauSocial.Api.Dtos;
+using Axel_ReseauSocial.Api.Domains.Commands.Utilisateurs;
 using Axel_ReseauSocial.Api.Domains.Queries.Utilisateurs;
 
 namespace Axel_ReseauSocial.Api.Controllers
