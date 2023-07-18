@@ -1,4 +1,7 @@
-﻿using Axel_ReseauSocial.Api.Domains.Repositories;
+﻿using Axel_ReseauSocial.Api.Domains.Queries.Roles;
+using Axel_ReseauSocial.Api.Domains.Queries.Travails;
+using Axel_ReseauSocial.Api.Domains.Repositories;
+using Axel_ReseauSocial.Api.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +17,19 @@ namespace Axel_ReseauSocial.Api.Domains.Services
         public RoleService(ReseauSocialDbContext context)
         {
             _context = context;
+        }
+
+        public IEnumerable<Role> Execute(GetAllRolesQuery query)
+        {
+            return _context.Roles.ToList();
+        }
+
+        public Role? Execute(GetOneRoleQuery query)
+        {
+            var role = _context.Roles
+                .FirstOrDefault(r => r.IdRole == query.Id);
+
+            return role;
         }
     }
 }

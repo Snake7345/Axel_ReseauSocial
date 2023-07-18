@@ -11,7 +11,7 @@ namespace Axel_ReseauSocial.Api.Domains
     {
         public DbSet<Localite> Localites { get { return Set<Localite>(); } }
         public DbSet<Role> Roles { get { return Set<Role>(); } }
-        public DbSet<Travail> Travail { get { return Set<Travail>(); } }
+        public DbSet<Travail> Travails { get { return Set<Travail>(); } }
         public DbSet<Utilisateur> Utilisateurs { get { return Set<Utilisateur>(); } }
         public DbSet<Pv> Pvs { get { return Set<Pv>(); } }
         public DbSet<Amitie> Amities { get { return Set<Amitie>(); } }
