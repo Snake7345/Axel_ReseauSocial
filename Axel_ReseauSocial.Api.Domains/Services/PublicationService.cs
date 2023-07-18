@@ -24,7 +24,7 @@ namespace Axel_ReseauSocial.Api.Domains.Services
             return _context.Publications.ToList();
         }
 
-        public Pv? Execute(GetOnePublicationQuery query)
+        public Publication? Execute(GetOnePublicationQuery query)
         {
             var publication = _context.Publications
                 .FirstOrDefault(p => p.IdPublication == query.Id);
