@@ -1,4 +1,4 @@
-﻿namespace Axel_ReseauSocial.Api.Forms
+﻿namespace Axel_ReseauSocial.Api.Forms.Utilisateur
 {
     public class RegisterUtilisateurForm
     {

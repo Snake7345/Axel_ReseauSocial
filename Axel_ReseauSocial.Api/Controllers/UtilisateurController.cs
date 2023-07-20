@@ -1,5 +1,4 @@
 ﻿using Axel_ReseauSocial.Api.Domains.Repositories;
-using Axel_ReseauSocial.Api.Forms;
 using Axel_ReseauSocial.Api.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +8,7 @@ using Axel_ReseauSocial.Api.Mappers;
 using Axel_ReseauSocial.Api.Dtos;
 using Axel_ReseauSocial.Api.Domains.Commands.Utilisateurs;
 using Axel_ReseauSocial.Api.Domains.Queries.Utilisateurs;
+using Axel_ReseauSocial.Api.Forms.Utilisateur;
 
 namespace Axel_ReseauSocial.Api.Controllers
 {

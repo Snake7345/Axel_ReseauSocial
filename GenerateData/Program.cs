@@ -70,7 +70,7 @@ namespace GenerateData
 
                 travaux.Sort((x, y) => string.Compare(x.Denomination, y.Denomination, StringComparison.OrdinalIgnoreCase));
 
-                dbContext.Travail.AddRange(travaux);
+                dbContext.Travails.AddRange(travaux);
                 dbContext.SaveChanges();
             }
             #endregion
@@ -78,7 +78,7 @@ namespace GenerateData
             #region AddAdmin
             Role userRole = dbContext.Roles.First(r => r.Denomination == "Admin");
             Localite userLocalite = dbContext.Localites.First(l => l.Ville == "Jumet");
-            Travail userTravail = dbContext.Travail.First(t => t.Denomination == "Sans emploi");
+            Travail userTravail = dbContext.Travails.First(t => t.Denomination == "Sans emploi");
 
             Utilisateur utilisateur = new Utilisateur()
             {

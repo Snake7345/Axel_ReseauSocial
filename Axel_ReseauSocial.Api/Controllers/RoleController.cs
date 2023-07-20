@@ -26,7 +26,7 @@ namespace Axel_ReseauSocial.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Role?>> GetTravail(int id)
+        public async Task<ActionResult<Role?>> GetRole(int id)
         {
             RoleDto? role = _roleRepository.Execute(new GetOneRoleQuery(id))?.ToRoleDto();
             if (role is null)

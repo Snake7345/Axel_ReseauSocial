@@ -18,4 +18,13 @@
     <ProjectReference Include="..\Axel_ReseauSocial.Api.Domains\Axel_ReseauSocial.Api.Domains.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Forms\Localite\" />
+    <Folder Include="Forms\Contenu\" />
+    <Folder Include="Forms\Commentaire\" />
+    <Folder Include="Forms\Amitie\" />
+    <Folder Include="Forms\Publication\" />
+    <Folder Include="Forms\Pv\" />
+  </ItemGroup>
+
 </Project>

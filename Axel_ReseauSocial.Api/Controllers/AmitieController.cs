@@ -26,7 +26,7 @@ namespace Axel_ReseauSocial.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Amitie?>> GetCommentaire(Guid id)
+        public async Task<ActionResult<Amitie?>> GetAmitie(Guid id)
         {
             AmitieDto? comm = _amitieRepository.Execute(new GetOneAmitieQuery(id))?.ToAmitieDto();
             if (comm is null)
