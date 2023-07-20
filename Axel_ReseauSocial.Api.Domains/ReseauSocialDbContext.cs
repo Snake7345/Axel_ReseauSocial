@@ -17,7 +17,6 @@ namespace Axel_ReseauSocial.Api.Domains
         public DbSet<Amitie> Amities { get { return Set<Amitie>(); } }
         public DbSet<Publication> Publications { get { return Set<Publication>(); } }
         public DbSet<Commentaire> Commentaires { get { return Set<Commentaire>(); } }
-        public DbSet<Contenu> Contenus { get { return Set<Contenu>(); } }
 
         public ReseauSocialDbContext()
         {
@@ -31,7 +30,7 @@ namespace Axel_ReseauSocial.Api.Domains
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=PC-AXEL;Initial Catalog=DB_RS;Integrated Security=True");
+            optionsBuilder.UseSqlServer(@"Data Source=AXEL-PC-LENOVO;Initial Catalog=DB_RS;Integrated Security=True");
             optionsBuilder.LogTo(Console.WriteLine, new[] { DbLoggerCategory.Database.Command.Name }, LogLevel.Information).EnableSensitiveDataLogging();
         }
 
@@ -45,7 +44,6 @@ namespace Axel_ReseauSocial.Api.Domains
             modelBuilder.ApplyConfiguration(new AmitieConfig());
             modelBuilder.ApplyConfiguration(new PublicationConfig());
             modelBuilder.ApplyConfiguration(new CommentaireConfig());
-            modelBuilder.ApplyConfiguration(new ContenuConfig());
         }
 
 

@@ -20,6 +20,14 @@ namespace Axel_ReseauSocial.Api.Domains.Configurations
             builder.Property(p => p.IdPublication)
                 .HasDefaultValueSql("NEWSEQUENTIALID()");
 
+            builder.Property(p => p.DateCreation)
+            .IsRequired()
+            .HasColumnType("DATETIME");
+
+            builder.Property(p => p.Texte)
+            .IsRequired()
+            .HasColumnType("NVARCHAR(2000)");
+
             builder.HasOne(p => p.Utilisateur)
                 .WithMany()
                 .OnDelete(DeleteBehavior.NoAction);

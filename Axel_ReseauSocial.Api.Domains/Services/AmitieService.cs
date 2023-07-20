@@ -1,7 +1,5 @@
 ﻿using Axel_ReseauSocial.Api.Domains.Commands.Amities;
-using Axel_ReseauSocial.Api.Domains.Commands.Contenus;
 using Axel_ReseauSocial.Api.Domains.Queries.Amities;
-using Axel_ReseauSocial.Api.Domains.Queries.Contenus;
 using Axel_ReseauSocial.Api.Domains.Queries.Utilisateurs;
 using Axel_ReseauSocial.Api.Domains.Repositories;
 using Axel_ReseauSocial.Api.Models;

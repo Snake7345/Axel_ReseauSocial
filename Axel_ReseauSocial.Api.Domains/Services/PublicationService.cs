@@ -4,6 +4,7 @@ using Axel_ReseauSocial.Api.Domains.Queries.Publications;
 using Axel_ReseauSocial.Api.Domains.Queries.Pvs;
 using Axel_ReseauSocial.Api.Domains.Repositories;
 using Axel_ReseauSocial.Api.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,12 +25,12 @@ namespace Axel_ReseauSocial.Api.Domains.Services
 
         public IEnumerable<Publication> Execute(GetAllPublicationsQuery query)
         {
-            return _context.Publications.ToList();
+            return _context.Publications.Include(u=>u.Utilisateur).ToList();
         }
 
         public Publication? Execute(GetOnePublicationQuery query)
         {
-            var publication = _context.Publications
+            var publication = _context.Publications.Include(u => u.Utilisateur)
                 .FirstOrDefault(p => p.IdPublication == query.Id);
 
             return publication;
@@ -41,6 +42,8 @@ namespace Axel_ReseauSocial.Api.Domains.Services
             {
                 Publication ObjectPublication = new Publication()
                 {
+                    DateCreation = DateTime.Now,
+                    Texte = command.Texte,
                     UtilisateurId = command.UtilisateurId,
                 };
                 _context.Publications.Add(ObjectPublication);

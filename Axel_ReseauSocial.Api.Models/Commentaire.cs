@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Axel_ReseauSocial.Api.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,11 @@ namespace Axel_ReseauSocial.Api.Models
     public class Commentaire
     {
         public Guid IdCommentaire { get; set; }
+
+        public DateTime DateCreation { get; set; }
+
+        public string Texte { get; set; }
+
         public Guid UtilisateurId { get; set; }
         public Guid PublicationId { get; set; }
 

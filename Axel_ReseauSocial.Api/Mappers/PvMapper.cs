@@ -10,6 +10,8 @@ namespace Axel_ReseauSocial.Api.Mappers
             return new PvDto()
             {
                 IdPv = pv.IdPv,
+                DateCreation = pv.DateCreation,
+                Texte = pv.Texte,
                 Destinataire = new UtilisateurDto()
                 {
                     IdUtilisateur = pv.Destinataire.IdUtilisateur,

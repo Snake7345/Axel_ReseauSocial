@@ -6,9 +6,15 @@ namespace Axel_ReseauSocial.Api.Domains.Commands.Publications
     {
         public Guid UtilisateurId { get; set; }
 
-        public CreatePublicationCommand(Guid utilisateurId)
+        public DateTime DateCreation { get; set; }
+
+        public string Texte { get; set; }
+
+        public CreatePublicationCommand(Guid utilisateurId, DateTime dateCreation, string texte)
         {
             UtilisateurId = utilisateurId;
+            DateCreation = dateCreation;
+            Texte = texte;
         }
     }
 }

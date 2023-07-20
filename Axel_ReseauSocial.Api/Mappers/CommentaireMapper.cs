@@ -38,6 +38,8 @@ namespace Axel_ReseauSocial.Api.Mappers
                         Denomination = commentaire.Utilisateur.Travail.Denomination
                     }
                 },
+                DateCreation =commentaire.DateCreation,
+                Texte = commentaire.Texte,
                 Publication = new PublicationDto()
                 {
                     IdPublication = commentaire.Publication.IdPublication,

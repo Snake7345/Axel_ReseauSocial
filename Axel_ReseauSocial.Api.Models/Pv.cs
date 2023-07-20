@@ -9,6 +9,12 @@ namespace Axel_ReseauSocial.Api.Models
     public class Pv
     {
         public Guid IdPv { get; set; }
+
+
+        public DateTime DateCreation { get; set; }
+
+        public string Texte { get; set; }
+
         public Guid DestinataireId { get; set; }
         public Guid DestinateurId { get; set; }
 

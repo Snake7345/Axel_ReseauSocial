@@ -10,6 +10,8 @@ namespace Axel_ReseauSocial.Api.Mappers
             return new PublicationDto()
             {
                 IdPublication = publication.IdPublication,
+                DateCreation = publication.DateCreation,
+                Texte = publication.Texte,
                 Utilisateur = new UtilisateurDto()
                 {
                     IdUtilisateur = publication.Utilisateur.IdUtilisateur,

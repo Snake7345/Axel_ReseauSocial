@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Axel_ReseauSocial.Api.Domains.Migrations
 {
     [DbContext(typeof(ReseauSocialDbContext))]
-    [Migration("20230714104111_AddContenu")]
-    partial class AddContenu
+    [Migration("20230720114644_AddContenus")]
+    partial class AddContenus
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -69,8 +69,15 @@ namespace Axel_ReseauSocial.Api.Domains.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasDefaultValueSql("NEWSEQUENTIALID()");
 
+                    b.Property<DateTime>("DateCreation")
+                        .HasColumnType("DATETIME");
+
                     b.Property<Guid>("PublicationId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Texte")
+                        .IsRequired()
+                        .HasColumnType("NVARCHAR(2000)");
 
                     b.Property<Guid>("UtilisateurId")
                         .HasColumnType("uniqueidentifier");
@@ -82,40 +89,6 @@ namespace Axel_ReseauSocial.Api.Domains.Migrations
                     b.HasIndex("UtilisateurId");
 
                     b.ToTable("Commentaire", (string)null);
-                });
-
-            modelBuilder.Entity("Axel_ReseauSocial.Api.Models.Contenu", b =>
-                {
-                    b.Property<Guid>("IdContenu")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("NEWSEQUENTIALID()");
-
-                    b.Property<Guid>("CommentaireId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("DateCreation")
-                        .HasColumnType("DATETIME");
-
-                    b.Property<Guid>("PublicationId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("PvId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Texte")
-                        .IsRequired()
-                        .HasColumnType("NVARCHAR(3000)");
-
-                    b.HasKey("IdContenu");
-
-                    b.HasIndex("CommentaireId");
-
-                    b.HasIndex("PublicationId");
-
-                    b.HasIndex("PvId");
-
-                    b.ToTable("Contenu", (string)null);
                 });
 
             modelBuilder.Entity("Axel_ReseauSocial.Api.Models.Localite", b =>
@@ -151,6 +124,13 @@ namespace Axel_ReseauSocial.Api.Domains.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasDefaultValueSql("NEWSEQUENTIALID()");
 
+                    b.Property<DateTime>("DateCreation")
+                        .HasColumnType("DATETIME");
+
+                    b.Property<string>("Texte")
+                        .IsRequired()
+                        .HasColumnType("NVARCHAR(2000)");
+
                     b.Property<Guid>("UtilisateurId")
                         .HasColumnType("uniqueidentifier");
 
@@ -168,11 +148,18 @@ namespace Axel_ReseauSocial.Api.Domains.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasDefaultValueSql("NEWSEQUENTIALID()");
 
+                    b.Property<DateTime>("DateCreation")
+                        .HasColumnType("DATETIME");
+
                     b.Property<Guid>("DestinataireId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("DestinateurId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Texte")
+                        .IsRequired()
+                        .HasColumnType("NVARCHAR(2000)");
 
                     b.HasKey("IdPv");
 
@@ -324,33 +311,6 @@ namespace Axel_ReseauSocial.Api.Domains.Migrations
                     b.Navigation("Publication");
 
                     b.Navigation("Utilisateur");
-                });
-
-            modelBuilder.Entity("Axel_ReseauSocial.Api.Models.Contenu", b =>
-                {
-                    b.HasOne("Axel_ReseauSocial.Api.Models.Commentaire", "Commentaire")
-                        .WithMany()
-                        .HasForeignKey("CommentaireId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("Axel_ReseauSocial.Api.Models.Publication", "Publication")
-                        .WithMany()
-                        .HasForeignKey("PublicationId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("Axel_ReseauSocial.Api.Models.Pv", "Pv")
-                        .WithMany()
-                        .HasForeignKey("PvId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Commentaire");
-
-                    b.Navigation("Publication");
-
-                    b.Navigation("Pv");
                 });
 
             modelBuilder.Entity("Axel_ReseauSocial.Api.Models.Publication", b =>

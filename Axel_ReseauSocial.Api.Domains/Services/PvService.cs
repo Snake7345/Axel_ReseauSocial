@@ -4,6 +4,7 @@ using Axel_ReseauSocial.Api.Domains.Queries.Pvs;
 using Axel_ReseauSocial.Api.Domains.Queries.Roles;
 using Axel_ReseauSocial.Api.Domains.Repositories;
 using Axel_ReseauSocial.Api.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,12 +25,14 @@ namespace Axel_ReseauSocial.Api.Domains.Services
 
         public IEnumerable<Pv> Execute(GetAllPvsQuery query)
         {
-            return _context.Pvs.ToList();
+            return _context.Pvs.Include(destinataire=>destinataire.Destinataire)
+                .Include(destinateur => destinateur.Destinateur).ToList();
         }
 
         public Pv? Execute(GetOnePvQuery query)
         {
-            var pv = _context.Pvs
+            var pv = _context.Pvs.Include(destinataire => destinataire.Destinataire)
+                .Include(destinateur => destinateur.Destinateur)
                 .FirstOrDefault(p => p.IdPv == query.Id);
 
             return pv;
@@ -41,6 +44,8 @@ namespace Axel_ReseauSocial.Api.Domains.Services
             {
                 Pv ObjectPv = new Pv()
                 {
+                    DateCreation = DateTime.Now,
+                    Texte = command.Texte,
                     DestinataireId = command.DestinataireId,
                     DestinateurId = command.DestinateurId,
                 };

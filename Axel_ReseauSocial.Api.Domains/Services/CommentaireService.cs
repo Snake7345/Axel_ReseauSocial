@@ -4,6 +4,7 @@ using Axel_ReseauSocial.Api.Domains.Queries.Commentaires;
 using Axel_ReseauSocial.Api.Domains.Queries.Pvs;
 using Axel_ReseauSocial.Api.Domains.Repositories;
 using Axel_ReseauSocial.Api.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,12 +24,12 @@ namespace Axel_ReseauSocial.Api.Domains.Services
         }
         public IEnumerable<Commentaire> Execute(GetAllCommentairesQuery query)
         {
-            return _context.Commentaires.ToList();
+            return _context.Commentaires.Include(u=>u.Utilisateur).Include(p=>p.Publication).ToList();
         }
 
         public Commentaire? Execute(GetOneCommentaireQuery query)
         {
-            var comm = _context.Commentaires
+            var comm = _context.Commentaires.Include(u => u.Utilisateur).Include(p => p.Publication)
                 .FirstOrDefault(c => c.IdCommentaire == query.Id);
 
             return comm;
@@ -40,7 +41,10 @@ namespace Axel_ReseauSocial.Api.Domains.Services
             {
                 Commentaire ObjectCommentaire = new Commentaire()
                 {
-                    PublicationId = command.PublicationId
+                    UtilisateurId = command.UtilisateurId,
+                    PublicationId = command.PublicationId,
+                    DateCreation = command.DateCreation,
+                    Texte = command.Texte,
                 };
                 _context.Commentaires.Add(ObjectCommentaire);
 
