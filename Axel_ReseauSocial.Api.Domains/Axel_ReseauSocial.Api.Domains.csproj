@@ -7,16 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Commands\Localites\**" />
+    <EmbeddedResource Remove="Commands\Localites\**" />
+    <None Remove="Commands\Localites\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.20" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Axel_ReseauSocial.Api.Models\Axel_ReseauSocial.Api.Models.csproj" />
     <ProjectReference Include="..\Tools.Cqs\Tools.Cqs.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Commands\Localites\" />
   </ItemGroup>
 
 </Project>

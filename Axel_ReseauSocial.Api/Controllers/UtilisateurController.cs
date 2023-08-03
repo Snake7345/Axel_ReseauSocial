@@ -54,5 +54,18 @@ namespace Axel_ReseauSocial.Api.Controllers
             return Ok(user);
         }
 
+        /*[HttpPut("{id}")]
+        public async Task<IActionResult> UpdateUtilisateur(Guid id, UpdateUtilisateurForm form)
+        {
+            Result result = _utilisateurRepository.Execute(new UpdateUtilisateurCommand(
+                id, form.Nom, form.Prenom, form.Email, form.Sexe, form.RoleId, form.LocaliteId, form.TravailId));
+
+            if (result.IsFailure)
+            {
+                return BadRequest(result.Message);
+            }
+
+            return Ok(new { message = "L'utilisateur a bien été mis à jour" });
+        }*/
     }
 }

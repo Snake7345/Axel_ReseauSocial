@@ -14,6 +14,13 @@ namespace Axel_ReseauSocial.Api
 
             builder.Services.AddControllers();
             builder.Services.AddDbContext<ReseauSocialDbContext>();
+            builder.Services.AddScoped<IAmitieRepository, AmitieService>();
+            builder.Services.AddScoped<ICommentaireRepository, CommentaireService>();
+            builder.Services.AddScoped<ILocaliteRepository, LocaliteService>();
+            builder.Services.AddScoped<IPublicationRepository, PublicationService>();
+            builder.Services.AddScoped<IPvRepository, PvService>();
+            builder.Services.AddScoped<IRoleRepository, RoleService>();
+            builder.Services.AddScoped<ITravailRepository, TravailService>();
             builder.Services.AddScoped<IUtilisateurRepository,UtilisateurService>();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
