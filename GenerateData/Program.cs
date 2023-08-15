@@ -20,7 +20,7 @@ namespace GenerateData
             using ReseauSocialDbContext dbContext = new ReseauSocialDbContext();
 
             #region Ajout des localités
-            using TextReader textReader = File.OpenText(@"c:\Data\code-postaux-belge.csv");
+            using TextReader textReader = File.OpenText(@"\Data\code-postaux-belge2.csv");
 
             // Eliminer la ligne titre
             textReader.ReadLine();
