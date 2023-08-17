@@ -10,8 +10,6 @@ namespace Axel_ReseauSocial.Api.Mappers
             return new AmitieDto()
             {
                 IdAmitie = amitie.IdAmitie,
-                Accepte = amitie.Accepte,
-                Refuse = amitie.Refuse,
                 Attente = amitie.Attente,
                 Destinataire = new UtilisateurDto()
                 {

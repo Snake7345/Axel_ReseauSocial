@@ -39,8 +39,6 @@ namespace Axel_ReseauSocial.Api.Domains.Services
             {
                 Amitie ObjectAmitie = new Amitie()
                 {
-                    Accepte = command.Accepte,
-                    Refuse = command.Refuse,
                     Attente = command.Attente,
                     DestinataireId = command.DestinataireId,
                     DestinateurId = command.DestinateurId,

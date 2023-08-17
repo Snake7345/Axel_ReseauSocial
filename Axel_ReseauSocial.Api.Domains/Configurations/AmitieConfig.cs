@@ -20,16 +20,6 @@ namespace Axel_ReseauSocial.Api.Domains.Configurations
             builder.Property(a => a.IdAmitie)
                 .HasDefaultValueSql("NEWSEQUENTIALID()");
 
-            builder.Property(a => a.Accepte)
-                .IsRequired()
-                .HasColumnType("BIT")
-                .HasDefaultValue(false);
-
-            builder.Property(a => a.Refuse)
-                .IsRequired()
-                .HasColumnType("BIT")
-                .HasDefaultValue(false);
-
             builder.Property(a => a.Attente)
                 .IsRequired()
                 .HasColumnType("BIT")
