@@ -1,5 +1,4 @@
 ﻿using Axel_ReseauSocial.Api.Domains.Queries.Amities;
-using Axel_ReseauSocial.Api.Domains.Queries.Commentaires;
 using Axel_ReseauSocial.Api.Domains.Repositories;
 using Axel_ReseauSocial.Api.Dtos;
 using Axel_ReseauSocial.Api.Mappers;
@@ -35,5 +34,7 @@ namespace Axel_ReseauSocial.Api.Controllers
             }
             return Ok(comm);
         }
+
+
     }
 }

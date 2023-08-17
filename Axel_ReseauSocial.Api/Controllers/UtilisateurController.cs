@@ -1,8 +1,6 @@
 ﻿using Axel_ReseauSocial.Api.Domains.Repositories;
 using Axel_ReseauSocial.Api.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Axel_ReseauSocial.Api.Domains.Commands;
 using Tools.Cqs.Commands;
 using Axel_ReseauSocial.Api.Mappers;
 using Axel_ReseauSocial.Api.Dtos;
@@ -18,6 +16,8 @@ namespace Axel_ReseauSocial.Api.Controllers
     {
         private readonly IUtilisateurRepository _utilisateurRepository;
 
+        #region Methode terminé
+
         public UtilisateurController(IUtilisateurRepository utilisateurRepository)
         {
             _utilisateurRepository = utilisateurRepository;
@@ -27,7 +27,7 @@ namespace Axel_ReseauSocial.Api.Controllers
         public IActionResult Register(RegisterUtilisateurForm form)
         {
             Result result = _utilisateurRepository.Execute(new RegisterUtilisateurCommand(
-                form.Nom, form.Prenom, form.Email, form.Passwd, form.Sexe, form.RoleId, form.LocaliteId, form.TravailId));
+                form.Nom, form.Prenom, form.Email, form.Passwd, form.Sexe, 2, form.LocaliteId, form.TravailId));
             
             if(result.IsFailure)
             {
@@ -53,19 +53,23 @@ namespace Axel_ReseauSocial.Api.Controllers
             }
             return Ok(user);
         }
-
-        /*[HttpPut("{id}")]
-        public async Task<IActionResult> UpdateUtilisateur(Guid id, UpdateUtilisateurForm form)
+        [HttpGet("count-gender")]
+        public async Task<ActionResult<IEnumerable<GenderCount>>> GetGendersCount()
         {
-            Result result = _utilisateurRepository.Execute(new UpdateUtilisateurCommand(
-                id, form.Nom, form.Prenom, form.Email, form.Sexe, form.RoleId, form.LocaliteId, form.TravailId));
+            return Ok(_utilisateurRepository.Execute(new GetGenderCountQuery()).ToGenderCountDto());
+        }
+        #endregion
+        [HttpPatch("{id}")]
+        public IActionResult Update(Guid id, UpdateUtilisateurForm form)
+        {
+            Result result = _utilisateurRepository.Execute(new UpdateUtilisateurCommand(id,
+                form.Nom, form.Prenom, form.Email, form.Passwd, form.Sexe, 2, form.LocaliteId, form.TravailId));
 
             if (result.IsFailure)
             {
                 return BadRequest(result.Message);
             }
-
-            return Ok(new { message = "L'utilisateur a bien été mis à jour" });
-        }*/
+            return Created("", new { message = "L'utilisateur a bien été update" });
+        }
     }
 }

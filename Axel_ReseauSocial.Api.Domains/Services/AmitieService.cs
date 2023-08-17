@@ -1,14 +1,7 @@
 ﻿using Axel_ReseauSocial.Api.Domains.Commands.Amities;
 using Axel_ReseauSocial.Api.Domains.Queries.Amities;
-using Axel_ReseauSocial.Api.Domains.Queries.Utilisateurs;
 using Axel_ReseauSocial.Api.Domains.Repositories;
 using Axel_ReseauSocial.Api.Models;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Tools.Cqs.Commands;
 
 namespace Axel_ReseauSocial.Api.Domains.Services

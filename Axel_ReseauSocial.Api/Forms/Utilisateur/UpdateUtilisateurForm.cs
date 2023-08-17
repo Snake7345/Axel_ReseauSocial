@@ -2,7 +2,7 @@
 
 namespace Axel_ReseauSocial.Api.Forms.Utilisateur
 {
-    public class RegisterUtilisateurForm
+    public class UpdateUtilisateurForm
     {
         [Required(ErrorMessage = "Le champ Nom est obligatoire.")]
         [RegularExpression(@"^[a-zA-Z\s]{2,75}$", ErrorMessage = "Le champ Nom doit contenir uniquement des lettres, avec une longueur entre 2 et 75 caractères.")]
@@ -26,7 +26,7 @@ namespace Axel_ReseauSocial.Api.Forms.Utilisateur
         [Required(ErrorMessage = "Le champ Travail est obligatoire.")]
         public int TravailId { get; set; }
 
-        public RegisterUtilisateurForm(string nom, string prenom, string email, string? passwd, string sexe, int roleId, int localiteId, int travailId)
+        public UpdateUtilisateurForm(string nom, string prenom, string email, string? passwd, string sexe, int roleId, int localiteId, int travailId)
         {
             Nom = nom;
             Prenom = prenom;

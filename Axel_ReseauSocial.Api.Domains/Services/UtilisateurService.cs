@@ -3,12 +3,6 @@ using Axel_ReseauSocial.Api.Domains.Queries.Utilisateurs;
 using Axel_ReseauSocial.Api.Domains.Repositories;
 using Axel_ReseauSocial.Api.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Tools.Cqs.Commands;
 
 namespace Axel_ReseauSocial.Api.Domains.Services
@@ -50,6 +44,8 @@ namespace Axel_ReseauSocial.Api.Domains.Services
 
         }
 
+
+
         public IEnumerable<Utilisateur> Execute(GetAllUtilisateursQuery query)
         {
             return _context.Utilisateurs.Include(t => t.Travail).Include(r => r.Role).Include(l => l.Localite).ToList();
@@ -64,6 +60,42 @@ namespace Axel_ReseauSocial.Api.Domains.Services
                     .FirstOrDefault(u => u.IdUtilisateur == query.Id);
 
                 return utilisateur;
+        }
+
+        public IEnumerable<GenderCount> Execute(GetGenderCountQuery query)
+        {
+            var gendercount = _context.Utilisateurs.GroupBy(u => u.Sexe)
+                .Select(g => new GenderCount() { Sexe = g.Key, Count = g.Count() });
+
+
+            return gendercount;
+        }
+
+        public Result Execute(UpdateUtilisateurCommand command)
+        {
+            try
+            {
+                Utilisateur ObjectUtilisateur = new Utilisateur()
+                {
+                    Nom = command.Nom,
+                    Prenom = command.Prenom,
+                    Email = command.Email,
+                    Passwd = command.Passwd,
+                    Sexe = command.Sexe,
+                    RoleId = command.RoleId,
+                    LocaliteId = command.LocaliteId,
+                    TravailId = command.TravailId
+                };
+                _context.Utilisateurs.Update(ObjectUtilisateur);
+
+                _context.SaveChanges();
+                return Result.Success();
+            }
+            catch (Exception ex)
+            {
+                return Result.Failure($"L\'update de l\'entité {nameof(Utilisateur)} a echouée");
+            }
+
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Axel_ReseauSocial.Api.Domains.Queries.Localites;
-using Axel_ReseauSocial.Api.Domains.Queries.Roles;
 using Axel_ReseauSocial.Api.Domains.Repositories;
 using Axel_ReseauSocial.Api.Dtos;
 using Axel_ReseauSocial.Api.Mappers;

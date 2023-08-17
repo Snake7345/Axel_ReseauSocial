@@ -1,5 +1,4 @@
 ﻿using Axel_ReseauSocial.Api.Domains.Queries.Publications;
-using Axel_ReseauSocial.Api.Domains.Queries.Pvs;
 using Axel_ReseauSocial.Api.Domains.Repositories;
 using Axel_ReseauSocial.Api.Dtos;
 using Axel_ReseauSocial.Api.Mappers;
