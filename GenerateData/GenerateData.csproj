@@ -11,4 +11,16 @@
     <ProjectReference Include="..\Axel_ReseauSocial.Api.Domains\Axel_ReseauSocial.Api.Domains.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Data\code-postaux-belge.csv">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\code-postaux-belge2.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\ROME_ArboPrincipale.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

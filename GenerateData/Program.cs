@@ -20,7 +20,7 @@ namespace GenerateData
             using ReseauSocialDbContext dbContext = new ReseauSocialDbContext();
 
             #region Ajout des localités
-            using TextReader textReader = File.OpenText(@"\Data\code-postaux-belge2.csv");
+            using TextReader textReader = File.OpenText(@"Data\code-postaux-belge2.csv");
 
             // Eliminer la ligne titre
             textReader.ReadLine();
@@ -50,7 +50,7 @@ namespace GenerateData
 
             #region Ajout des travaux
 
-            string filePath = "c:\\Data\\ROME_ArboPrincipale.csv";
+            string filePath = "Data\\ROME_ArboPrincipale.csv";
 
             using (TextReader textReader2 = new StreamReader(filePath, Encoding.GetEncoding("Windows-1252")))
             {
