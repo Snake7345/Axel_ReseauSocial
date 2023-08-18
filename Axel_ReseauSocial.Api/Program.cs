@@ -26,11 +26,12 @@ namespace Axel_ReseauSocial.Api
             builder.Services.AddSwaggerGen();
             builder.Services.AddCors(options =>
             {
-                options.AddPolicy("AllowAll", builder =>
+                options.AddDefaultPolicy(builder =>
                 {
-                    builder.AllowAnyOrigin()
-                           .AllowAnyMethod()
-                           .AllowAnyHeader();
+                    builder.WithOrigins("http://localhost:4200")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowCredentials();
                 });
             });
 
@@ -47,7 +48,7 @@ namespace Axel_ReseauSocial.Api
 
             app.UseAuthorization();
 
-            app.UseCors("AllowAll"); // Add this line to enable CORS
+            app.UseCors(); // Add this line to enable CORS
 
             app.MapControllers();
 
