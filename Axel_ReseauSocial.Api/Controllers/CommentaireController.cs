@@ -34,5 +34,18 @@ namespace Axel_ReseauSocial.Api.Controllers
             }
             return Ok(comm);
         }
+
+        /*[HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            Result result = _commentaireRepository.Execute(new DeleteCommentaireCommand(id));
+
+        if (result.IsFailure)
+        {
+            return BadRequest(result.Message);
+        }
+
+        return NoContent();
+        }*/
     }
 }

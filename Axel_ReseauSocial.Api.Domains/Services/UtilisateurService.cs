@@ -44,8 +44,6 @@ namespace Axel_ReseauSocial.Api.Domains.Services
 
         }
 
-
-
         public IEnumerable<Utilisateur> Execute(GetAllUtilisateursQuery query)
         {
             return _context.Utilisateurs.Include(t => t.Travail).Include(r => r.Role).Include(l => l.Localite).ToList();
@@ -73,28 +71,33 @@ namespace Axel_ReseauSocial.Api.Domains.Services
 
         public Result Execute(UpdateUtilisateurCommand command)
         {
+
             try
             {
-                Utilisateur ObjectUtilisateur = new Utilisateur()
+                Utilisateur? utilisateur = _context.Utilisateurs.FirstOrDefault(u => u.IdUtilisateur == command.IdUtilisateur);
+                if (utilisateur == null)
                 {
-                    Nom = command.Nom,
-                    Prenom = command.Prenom,
-                    Email = command.Email,
-                    Passwd = command.Passwd,
-                    Sexe = command.Sexe,
-                    RoleId = command.RoleId,
-                    LocaliteId = command.LocaliteId,
-                    TravailId = command.TravailId
-                };
-                _context.Utilisateurs.Update(ObjectUtilisateur);
+                    throw new Exception("L'id n'a pas été trouvé");
+                }
+
+                // Mettez à jour les propriétés nécessaires de l'instance existante
+                utilisateur.Nom = command.Nom;
+                utilisateur.Prenom = command.Prenom;
+                utilisateur.Email = command.Email;
+                utilisateur.Passwd = command.Passwd;
+                utilisateur.Sexe = command.Sexe;
+                utilisateur.RoleId = command.RoleId;
+                utilisateur.LocaliteId = command.LocaliteId;
+                utilisateur.TravailId = command.TravailId;
 
                 _context.SaveChanges();
                 return Result.Success();
             }
             catch (Exception ex)
             {
-                return Result.Failure($"L\'update de l\'entité {nameof(Utilisateur)} a echouée");
+                return Result.Failure($"L'update de l'entité {nameof(Utilisateur)} a échoué");
             }
+
 
         }
     }

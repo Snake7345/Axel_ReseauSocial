@@ -16,7 +16,8 @@ namespace Axel_ReseauSocial.Api.Domains.Repositories
 {
     public interface IRoleRepository : IQueryHandler<GetAllRolesQuery, IEnumerable<Role>>,
         IQueryHandler<GetOneRoleQuery, Role?>,
-        ICommandHandler<CreateRoleCommand>
+        ICommandHandler<CreateRoleCommand>,
+        ICommandHandler<UpdateRoleCommand>
     {
     }
 }

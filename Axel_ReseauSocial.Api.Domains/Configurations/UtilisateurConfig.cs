@@ -45,7 +45,7 @@ namespace Axel_ReseauSocial.Api.Domains.Configurations
 
             builder.Property(u => u.Date)
                 .IsRequired()
-                .HasColumnType("DATETIME");
+                .HasColumnType("DATETIME2");
 
             builder.Property(u => u.Actif)
                 .IsRequired()

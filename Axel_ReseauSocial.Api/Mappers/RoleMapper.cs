@@ -22,5 +22,23 @@ namespace Axel_ReseauSocial.Api.Mappers
             }
             return result;
         }
+
+        internal static UpdateRoleDto ToUpdateRoleDto(this Role role)
+        {
+            return new UpdateRoleDto()
+            {
+                Denomination = role.Denomination,
+            };
+        }
+
+        internal static IEnumerable<UpdateRoleDto> ToUpdateRoleDto(this IEnumerable<Role> roles)
+        {
+            List<UpdateRoleDto> result = new List<UpdateRoleDto>();
+            foreach (Role role in roles)
+            {
+                result.Add(role.ToUpdateRoleDto());
+            }
+            return result;
+        }
     }
 }

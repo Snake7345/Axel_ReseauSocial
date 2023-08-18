@@ -22,7 +22,7 @@ namespace Axel_ReseauSocial.Api.Domains.Configurations
 
             builder.Property(p => p.DateCreation)
             .IsRequired()
-            .HasColumnType("DATETIME");
+            .HasColumnType("DATETIME2");
 
             builder.Property(p => p.Texte)
             .IsRequired()

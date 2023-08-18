@@ -43,7 +43,28 @@ namespace Axel_ReseauSocial.Api.Domains.Services
             }
             catch (Exception ex)
             {
-                return Result.Failure($"L\'insertion de l\'entité {nameof(Utilisateur)} a echouée");
+                return Result.Failure($"L\'insertion de l\'entité {nameof(Role)} a echouée");
+            }
+
+        }
+
+        public Result Execute(UpdateRoleCommand command)
+        {
+            try
+            {
+                Role ObjectRole = new Role()
+                {
+                    IdRole = command.IdRole,
+                    Denomination = command.Denomination,
+                };
+                _context.Roles.Update(ObjectRole);
+
+                _context.SaveChanges();
+                return Result.Success();
+            }
+            catch (Exception ex)
+            {
+                return Result.Failure($"L\'update de l\'entité {nameof(Role)} a echouée");
             }
 
         }

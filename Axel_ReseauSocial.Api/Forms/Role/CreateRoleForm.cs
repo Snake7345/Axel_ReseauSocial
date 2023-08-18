@@ -1,12 +1,10 @@
 ﻿namespace Axel_ReseauSocial.Api.Forms.Role
 {
-    public class CreateRole
+    public class CreateRoleForm
     {
-
-
         public string Denomination { get; set; }
 
-        public CreateRole(string denomination)
+        public CreateRoleForm(string denomination)
         {
             Denomination = denomination;
         }

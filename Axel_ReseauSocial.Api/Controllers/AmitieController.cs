@@ -35,6 +35,17 @@ namespace Axel_ReseauSocial.Api.Controllers
             return Ok(comm);
         }
 
+        /*[HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            Result result = _amitieRepository.Execute(new DeleteAmitieCommand(id));
 
+        if (result.IsFailure)
+        {
+        return BadRequest(result.Message);
+        }
+
+        return NoContent(); // Réponse 204 No Content après la suppression réussie
+        }*/
     }
 }

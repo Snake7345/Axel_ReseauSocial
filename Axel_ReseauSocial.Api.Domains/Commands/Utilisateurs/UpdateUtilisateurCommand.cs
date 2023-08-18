@@ -10,7 +10,7 @@ namespace Axel_ReseauSocial.Api.Domains.Commands.Utilisateurs
     public class UpdateUtilisateurCommand : ICommand
     {
             public Guid IdUtilisateur { get; init; }
-            public string Nom { get; init; }
+            public string Nom { get; set; }
             public string Prenom { get; set; }
             public string Email { get; set; }
             public string? Passwd { get; set; }

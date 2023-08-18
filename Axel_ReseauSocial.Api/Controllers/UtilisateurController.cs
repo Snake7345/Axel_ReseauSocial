@@ -71,5 +71,18 @@ namespace Axel_ReseauSocial.Api.Controllers
             }
             return Created("", new { message = "L'utilisateur a bien été update" });
         }
+
+        /*[HttpDelete("{id}")]
+public IActionResult Delete(int id)
+{
+    Result result = _amitieRepository.Execute(new DeleteUtilisateurCommand(id));
+
+if (result.IsFailure)
+{
+    return BadRequest(result.Message);
+}
+
+return NoContent();
+}*/
     }
 }

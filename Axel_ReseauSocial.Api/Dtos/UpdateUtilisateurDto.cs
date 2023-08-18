@@ -7,7 +7,6 @@
         public string Prenom { get; set; }
         public string Email { get; set; }
         public string Sexe { get; set; }
-        public bool? Actif { get; set; }
         public RoleDto Role { get; set; }
         public LocaliteDto Localite { get; set; }
         public TravailDto Travail { get; set; }

@@ -47,16 +47,14 @@ namespace Axel_ReseauSocial.Api.Mappers
             return result;
         }
 
-        internal static UtilisateurDto ToUpdateUtilisateurDto(this Utilisateur utilisateur)
+        internal static UpdateUtilisateurDto ToUpdateUtilisateurDto(this Utilisateur utilisateur)
         {
-            return new UtilisateurDto()
+            return new UpdateUtilisateurDto()
             {
                 Nom = utilisateur.Nom,
                 Prenom = utilisateur.Prenom,
                 Email = utilisateur.Email,
                 Sexe = utilisateur.Sexe,
-                Date = utilisateur.Date,
-                Actif = utilisateur.Actif,
                 Role = new RoleDto()
                 {
                     IdRole = utilisateur.Role.IdRole,
@@ -77,9 +75,9 @@ namespace Axel_ReseauSocial.Api.Mappers
                 }
             };
         }
-        internal static IEnumerable<UtilisateurDto> ToUpdateUtilisateurDto(this IEnumerable<Utilisateur> utilisateurs)
+        internal static IEnumerable<UpdateUtilisateurDto> ToUpdateUtilisateurDto(this IEnumerable<Utilisateur> utilisateurs)
         {
-            List<UtilisateurDto> result = new List<UtilisateurDto>();
+            List<UpdateUtilisateurDto> result = new List<UpdateUtilisateurDto>();
             foreach (Utilisateur utilisateur in utilisateurs)
             {
                 result.Add(utilisateur.ToUpdateUtilisateurDto());
