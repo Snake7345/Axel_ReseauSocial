@@ -19,9 +19,9 @@ namespace Axel_ReseauSocial.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Publication>>> GetPublications()
+        public IActionResult GetPublications()
         {
-            return Ok(_publicationRepository.Execute(new GetAllPublicationsQuery()).ToPublicationDto());
+            return Ok(_publicationRepository.Execute(new GetAllPublicationsQuery()).Select(p => p.ToPublicationDto()).ToList());
         }
 
         [HttpGet("{id}")]

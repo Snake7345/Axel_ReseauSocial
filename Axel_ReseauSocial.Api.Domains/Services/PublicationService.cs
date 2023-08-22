@@ -18,7 +18,10 @@ namespace Axel_ReseauSocial.Api.Domains.Services
 
         public IEnumerable<Publication> Execute(GetAllPublicationsQuery query)
         {
-            return _context.Publications.Include(u=>u.Utilisateur).ToList();
+            return _context.Publications.Include(p => p.Utilisateur).ThenInclude(u => u.Role)
+                                        .Include(p => p.Utilisateur).ThenInclude(u => u.Localite)
+                                        .Include(p => p.Utilisateur).ThenInclude(u => u.Travail)
+                                        .ToList();
         }
 
         public Publication? Execute(GetOnePublicationQuery query)

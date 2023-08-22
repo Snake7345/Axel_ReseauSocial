@@ -21,35 +21,11 @@ namespace Axel_ReseauSocial.Api.Mappers
                     Sexe = publication.Utilisateur.Sexe,
                     Date = publication.Utilisateur.Date,
                     Actif = publication.Utilisateur.Actif,
-                    Role = new RoleDto()
-                    {
-                        IdRole = publication.Utilisateur.Role.IdRole,
-                        Denomination = publication.Utilisateur.Role.Denomination,
-                    },
-                    Localite = new LocaliteDto()
-                    {
-                        IdLocalite = publication.Utilisateur.Localite.IdLocalite,
-                        CP = publication.Utilisateur.Localite.CP,
-                        Longitude = publication.Utilisateur.Localite.Longitude,
-                        Latitude = publication.Utilisateur.Localite.Latitude,
-                        Ville = publication.Utilisateur.Localite.Ville
-                    },
-                    Travail = new TravailDto()
-                    {
-                        IdTravail = publication.Utilisateur.Travail.IdTravail,
-                        Denomination = publication.Utilisateur.Travail.Denomination
-                    }
+                    Role = publication.Utilisateur.Role.ToRoleDto(),                    
+                    Localite = publication.Utilisateur.Localite.ToLocaliteDto(),
+                    Travail = publication.Utilisateur.Travail.ToTravailDto()
                 },
             };
-        }
-        internal static IEnumerable<PublicationDto> ToPublicationDto(this IEnumerable<Publication> publications)
-        {
-            List<PublicationDto> result = new List<PublicationDto>();
-            foreach (Publication publication in publications)
-            {
-                result.Add(publication.ToPublicationDto());
-            }
-            return result;
         }
     }
 }
