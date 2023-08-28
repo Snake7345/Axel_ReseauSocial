@@ -14,6 +14,7 @@ namespace Axel_ReseauSocial.Api.Domains.Repositories
     public interface IUtilisateurRepository : ICommandHandler<RegisterUtilisateurCommand>,
         IQueryHandler<GetAllUtilisateursQuery,IEnumerable<Utilisateur>>,
         IQueryHandler<GetOneUtilisateurQuery,Utilisateur?>,
+        IQueryHandler<GetUtilisateurByEmailAndPasswordQuery, Utilisateur?>,
         IQueryHandler<GetGenderCountQuery, IEnumerable<GenderCount>>,
         ICommandHandler<UpdateUtilisateurCommand>
     {

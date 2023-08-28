@@ -1,8 +1,10 @@
 ﻿using Axel_ReseauSocial.Api.Domains.Commands.Utilisateurs;
 using Axel_ReseauSocial.Api.Domains.Queries.Utilisateurs;
 using Axel_ReseauSocial.Api.Domains.Repositories;
+using Axel_ReseauSocial.Api.Domains.Tools;
 using Axel_ReseauSocial.Api.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Text;
 using Tools.Cqs.Commands;
 
 namespace Axel_ReseauSocial.Api.Domains.Services
@@ -60,6 +62,41 @@ namespace Axel_ReseauSocial.Api.Domains.Services
                 return utilisateur;
         }
 
+
+        public Utilisateur? Execute(GetUtilisateurByEmailAndPasswordQuery query)
+        {
+            var utilisateur = _context.Utilisateurs
+            .Include(t => t.Travail)
+            .Include(r => r.Role)
+            .Include(l => l.Localite)
+            .ToList()
+            .FirstOrDefault(u => u.Email == query.Email && Convert.ToBase64String(query.Passwd.Hash()) == u.Passwd);
+
+            if (utilisateur is null)
+            {
+                // Gestion de l'erreur pour mot de passe/mail incorrecte
+                Console.WriteLine("je passe par ici");
+                return null;
+            }
+
+            return utilisateur;
+        }
+
+        private bool VerifyPasswordHash(string password, byte[] storedHash, byte[] storedSalt)
+        {
+            using var hmac = new System.Security.Cryptography.HMACSHA512(storedSalt);
+            var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
+
+            for (int i = 0; i < computedHash.Length; i++)
+            {
+                if (computedHash[i] != storedHash[i])
+                {
+                    return false; // Correspondance incorrecte
+                }
+            }
+            return true; // Correspondance réussie
+        }
+
         public IEnumerable<GenderCount> Execute(GetGenderCountQuery query)
         {
             var gendercount = _context.Utilisateurs.GroupBy(u => u.Sexe)
@@ -100,5 +137,6 @@ namespace Axel_ReseauSocial.Api.Domains.Services
 
 
         }
+
     }
 }

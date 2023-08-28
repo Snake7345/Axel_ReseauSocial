@@ -84,7 +84,7 @@ namespace GenerateData
             {
                 Nom = "Bauduin",
                 Prenom = "Axel",
-                Email = "axel.bauduin@gmail.com",
+                Email = "axelbauduin@gmail.com",
                 Passwd = "Test1234=",
                 Sexe = "Masculin",
                 Date = DateTime.Now,

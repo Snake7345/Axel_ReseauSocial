@@ -7,6 +7,7 @@ using Axel_ReseauSocial.Api.Dtos;
 using Axel_ReseauSocial.Api.Domains.Commands.Utilisateurs;
 using Axel_ReseauSocial.Api.Domains.Queries.Utilisateurs;
 using Axel_ReseauSocial.Api.Forms.Utilisateur;
+using Axel_ReseauSocial.Api.Forms.Invite;
 
 namespace Axel_ReseauSocial.Api.Controllers
 {
@@ -43,6 +44,7 @@ namespace Axel_ReseauSocial.Api.Controllers
             return Ok(_utilisateurRepository.Execute(new GetAllUtilisateursQuery()).ToUtilisateurDto());
         }
 
+
         [HttpGet("{id}")]
         public async Task<ActionResult<Utilisateur?>> GetUtilisateur(Guid id)
         {
@@ -53,12 +55,13 @@ namespace Axel_ReseauSocial.Api.Controllers
             }
             return Ok(user);
         }
+
         [HttpGet("count-gender")]
         public async Task<ActionResult<IEnumerable<GenderCount>>> GetGendersCount()
         {
             return Ok(_utilisateurRepository.Execute(new GetGenderCountQuery()).ToGenderCountDto());
         }
-        #endregion
+
         [HttpPatch("{id}")]
         public IActionResult Update(Guid id, UpdateUtilisateurForm form)
         {
@@ -71,6 +74,23 @@ namespace Axel_ReseauSocial.Api.Controllers
             }
             return Created("", new { message = "L'utilisateur a bien été update" });
         }
+
+
+        #endregion
+
+        [HttpPost("connexion")]
+        public async Task<IActionResult> Connexion(ConnexionInviteForm form)
+        {
+            Utilisateur? utilisateur = _utilisateurRepository.Execute(new GetUtilisateurByEmailAndPasswordQuery(form.Email, form.Passwd));
+
+            if (utilisateur == null)
+            {
+                return NotFound(new { message = "Utilisateur non trouvé" });
+            }
+
+            return Ok(utilisateur.ToUtilisateurDto());
+        }
+
 
         /*[HttpDelete("{id}")]
 public IActionResult Delete(int id)

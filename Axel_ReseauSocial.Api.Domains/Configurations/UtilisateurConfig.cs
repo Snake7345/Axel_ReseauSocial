@@ -37,7 +37,7 @@ namespace Axel_ReseauSocial.Api.Domains.Configurations
             builder.Property(u => u.Passwd)
                 .IsRequired()
                 .HasColumnType("BINARY(64)")
-                .HasConversion(new ValueConverter<string?, byte[]>(v => v.Hash(), v => null));
+                .HasConversion(new ValueConverter<string?, byte[]>(v => v.Hash(), v => Convert.ToBase64String(v)));
 
             builder.Property(u => u.Sexe)
                 .IsRequired()
