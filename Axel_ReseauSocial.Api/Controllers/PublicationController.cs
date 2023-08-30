@@ -34,6 +34,15 @@ namespace Axel_ReseauSocial.Api.Controllers
             }
             return Ok(publication);
         }
+
+        [HttpGet("Publicationby/{id}")]
+        public async Task<IActionResult> GetPublicationByUser(Guid id)
+        {
+            IEnumerable<PublicationDto> publication = _publicationRepository.Execute(new GetAllPublicationsByIdUtilisateurQuery(id))
+                .ToPublicationDto();
+            return Ok(publication);
+        }
+
         /*[HttpDelete("{id}")]
 public IActionResult Delete(int id)
 {

@@ -15,7 +15,8 @@ namespace Axel_ReseauSocial.Api.Domains.Repositories
 {
     public interface ICommentaireRepository : IQueryHandler<GetAllCommentairesQuery, IEnumerable<Commentaire>>,
         IQueryHandler<GetOneCommentaireQuery, Commentaire?>,
-        ICommandHandler<CreateCommentaireCommand>
+        ICommandHandler<CreateCommentaireCommand>,
+        ICommandHandler<DeleteCommentaireCommand>
     {
     }
 }

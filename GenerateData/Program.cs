@@ -86,7 +86,7 @@ namespace GenerateData
                 Prenom = "Axel",
                 Email = "axelbauduin@gmail.com",
                 Passwd = "Test1234=",
-                Sexe = "Masculin",
+                Sexe = "masculin",
                 Date = DateTime.Now,
                 Localite = userLocalite,
                 Role = userRole,

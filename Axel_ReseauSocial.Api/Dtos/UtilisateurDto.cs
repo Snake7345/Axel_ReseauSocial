@@ -16,4 +16,11 @@ namespace Axel_ReseauSocial.Api.Dtos
         public TravailDto Travail { get; set; }
 
     }
+
+    public class MinimalUtilisateurDto
+    {
+        public Guid IdUtilisateur { get; set; }
+        public string Nom { get; set; }
+        public string Prenom { get; set; }
+    }
 }

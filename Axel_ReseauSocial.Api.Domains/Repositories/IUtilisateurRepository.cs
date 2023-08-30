@@ -16,7 +16,8 @@ namespace Axel_ReseauSocial.Api.Domains.Repositories
         IQueryHandler<GetOneUtilisateurQuery,Utilisateur?>,
         IQueryHandler<GetUtilisateurByEmailAndPasswordQuery, Utilisateur?>,
         IQueryHandler<GetGenderCountQuery, IEnumerable<GenderCount>>,
-        ICommandHandler<UpdateUtilisateurCommand>
+        ICommandHandler<UpdateUtilisateurCommand>,
+        ICommandHandler<DeleteUtilisateurCommand>
     {
     }
 }

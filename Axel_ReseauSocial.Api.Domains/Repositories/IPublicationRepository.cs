@@ -15,7 +15,8 @@ namespace Axel_ReseauSocial.Api.Domains.Repositories
 {
     public interface IPublicationRepository : IQueryHandler<GetAllPublicationsQuery, IEnumerable<Publication>>,
         IQueryHandler<GetOnePublicationQuery, Publication?>,
-        ICommandHandler<CreatePublicationCommand>
+        ICommandHandler<CreatePublicationCommand>,
+        IQueryHandler<GetAllPublicationsByIdUtilisateurQuery, IEnumerable<Publication>>
     {
     }
 }

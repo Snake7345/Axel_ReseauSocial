@@ -1,4 +1,5 @@
-﻿using Axel_ReseauSocial.Api.Domains.Commands.Commentaires;
+﻿using Axel_ReseauSocial.Api.Domains.Commands.Amities;
+using Axel_ReseauSocial.Api.Domains.Commands.Commentaires;
 using Axel_ReseauSocial.Api.Domains.Queries.Commentaires;
 using Axel_ReseauSocial.Api.Domains.Repositories;
 using Axel_ReseauSocial.Api.Models;
@@ -49,6 +50,27 @@ namespace Axel_ReseauSocial.Api.Domains.Services
                 return Result.Failure($"L\'insertion de l\'entité {nameof(Commentaire)} a echouée");
             }
 
+        }
+        public Result Execute(DeleteCommentaireCommand command)
+        {
+            try
+            {
+                Commentaire? commentaire = _context.Commentaires.FirstOrDefault(c => c.IdCommentaire == command.IdCommentaire);
+
+                if (commentaire == null)
+                {
+                    return Result.Failure("Le commentaire avec cet ID n'a pas été trouvé");
+                }
+
+                _context.Commentaires.Remove(commentaire); // Supprime le commentaire de la base de données
+                _context.SaveChanges(); // Enregistre les modifications dans la base de données
+
+                return Result.Success();
+            }
+            catch (Exception ex)
+            {
+                return Result.Failure($"La suppression de l'entité {nameof(Commentaire)} a échoué : {ex.Message}");
+            }
         }
     }
 }

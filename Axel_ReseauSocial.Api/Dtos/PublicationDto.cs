@@ -10,6 +10,6 @@ namespace Axel_ReseauSocial.Api.Dtos
 
         public string Texte { get; set; }
 
-        public UtilisateurDto Utilisateur { get; set; }
+        public MinimalUtilisateurDto Utilisateur { get; set; }
     }
 }

@@ -24,12 +24,12 @@ namespace Axel_ReseauSocial.Api.Controllers
             _utilisateurRepository = utilisateurRepository;
         }
 
-        [HttpPost]
-        public IActionResult Register(RegisterUtilisateurForm form)
+        [HttpPost("registration")]
+        public IActionResult Register([FromBody]RegisterUtilisateurForm form)
         {
             Result result = _utilisateurRepository.Execute(new RegisterUtilisateurCommand(
                 form.Nom, form.Prenom, form.Email, form.Passwd, form.Sexe, 2, form.LocaliteId, form.TravailId));
-            
+            Console.WriteLine(result.ToString());
             if(result.IsFailure)
             {
                 return BadRequest(result.Message);
@@ -79,30 +79,31 @@ namespace Axel_ReseauSocial.Api.Controllers
         #endregion
 
         [HttpPost("connexion")]
-        public async Task<IActionResult> Connexion(ConnexionInviteForm form)
+        public async Task<IActionResult> Connexion([FromBody] ConnexionInviteForm form)
         {
-            Utilisateur? utilisateur = _utilisateurRepository.Execute(new GetUtilisateurByEmailAndPasswordQuery(form.Email, form.Passwd));
-
-            if (utilisateur == null)
+           
+            try
             {
-                return NotFound(new { message = "Utilisateur non trouvé" });
+                Utilisateur? utilisateur = _utilisateurRepository.Execute(new GetUtilisateurByEmailAndPasswordQuery(form.Email, form.Passwd));
+                return Ok(utilisateur.ToUtilisateurDto());
             }
-
-            return Ok(utilisateur.ToUtilisateurDto());
+            catch (Exception ex)
+            {
+                return Unauthorized(new {ex.Message});
+            }
         }
 
 
-        /*[HttpDelete("{id}")]
-public IActionResult Delete(int id)
-{
-    Result result = _amitieRepository.Execute(new DeleteUtilisateurCommand(id));
+        [HttpDelete("{id}")]
+        public IActionResult Delete(Guid id)
+        {
+            Result result = _utilisateurRepository.Execute(new DeleteUtilisateurCommand(id));
 
-if (result.IsFailure)
-{
-    return BadRequest(result.Message);
-}
-
-return NoContent();
-}*/
+            if (result.IsFailure)
+            {
+                return BadRequest(result.Message);
+            }
+            return Ok(new { message = "L'utilisateur a été supprimé" });
+        }
     }
 }

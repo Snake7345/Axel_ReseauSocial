@@ -66,17 +66,16 @@ namespace Axel_ReseauSocial.Api.Domains.Services
         public Utilisateur? Execute(GetUtilisateurByEmailAndPasswordQuery query)
         {
             var utilisateur = _context.Utilisateurs
-            .Include(t => t.Travail)
-            .Include(r => r.Role)
-            .Include(l => l.Localite)
-            .ToList()
-            .FirstOrDefault(u => u.Email == query.Email && Convert.ToBase64String(query.Passwd.Hash()) == u.Passwd);
+                .Include(t => t.Travail)
+                .Include(r => r.Role)
+                .Include(l => l.Localite)
+                .ToList()
+                .FirstOrDefault(u => u.Email == query.Email && Convert.ToBase64String(query.Passwd.Hash()) == u.Passwd);
 
             if (utilisateur is null)
             {
-                // Gestion de l'erreur pour mot de passe/mail incorrecte
-                Console.WriteLine("je passe par ici");
-                return null;
+                // Générez une exception pour indiquer que l'utilisateur n'a pas été trouvé
+                throw new InvalidOperationException("Adresse email ou mot de passe incorrect.");
             }
 
             return utilisateur;
@@ -136,6 +135,28 @@ namespace Axel_ReseauSocial.Api.Domains.Services
             }
 
 
+        }
+
+        public Result Execute(DeleteUtilisateurCommand command)
+        {
+            try
+            {
+                Utilisateur? utilisateur = _context.Utilisateurs.FirstOrDefault(u => u.IdUtilisateur == command.IdUtilisateur);
+
+                if (utilisateur == null)
+                {
+                    return Result.Failure("L'utilisateur avec cet ID n'a pas été trouvé");
+                }
+
+                _context.Utilisateurs.Remove(utilisateur); // Supprime l'utilisateur de la base de données
+                _context.SaveChanges(); // Enregistre les modifications dans la base de données
+
+                return Result.Success();
+            }
+            catch (Exception ex)
+            {
+                return Result.Failure($"La suppression de l'entité {nameof(Utilisateur)} a échoué : {ex.Message}");
+            }
         }
 
     }

@@ -1,9 +1,11 @@
-﻿using Axel_ReseauSocial.Api.Domains.Queries.Commentaires;
+﻿using Axel_ReseauSocial.Api.Domains.Commands.Commentaires;
+using Axel_ReseauSocial.Api.Domains.Queries.Commentaires;
 using Axel_ReseauSocial.Api.Domains.Repositories;
 using Axel_ReseauSocial.Api.Dtos;
 using Axel_ReseauSocial.Api.Mappers;
 using Axel_ReseauSocial.Api.Models;
 using Microsoft.AspNetCore.Mvc;
+using Tools.Cqs.Commands;
 
 namespace Axel_ReseauSocial.Api.Controllers
 {
@@ -35,8 +37,8 @@ namespace Axel_ReseauSocial.Api.Controllers
             return Ok(comm);
         }
 
-        /*[HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        [HttpDelete("{id}")]
+        public IActionResult Delete(Guid id)
         {
             Result result = _commentaireRepository.Execute(new DeleteCommentaireCommand(id));
 
@@ -46,6 +48,6 @@ namespace Axel_ReseauSocial.Api.Controllers
         }
 
         return NoContent();
-        }*/
+        }
     }
 }

@@ -43,33 +43,11 @@ namespace Axel_ReseauSocial.Api.Mappers
                 Publication = new PublicationDto()
                 {
                     IdPublication = commentaire.Publication.IdPublication,
-                    Utilisateur = new UtilisateurDto()
+                    Utilisateur = new MinimalUtilisateurDto()
                     {
                         IdUtilisateur = commentaire.Publication.Utilisateur.IdUtilisateur,
                         Nom = commentaire.Publication.Utilisateur.Nom,
-                        Prenom = commentaire.Publication.Utilisateur.Prenom,
-                        Email = commentaire.Publication.Utilisateur.Email,
-                        Sexe = commentaire.Publication.Utilisateur.Sexe,
-                        Date = commentaire.Publication.Utilisateur.Date,
-                        Actif = commentaire.Publication.Utilisateur.Actif,
-                        Role = new RoleDto()
-                        {
-                            IdRole = commentaire.Publication.Utilisateur.Role.IdRole,
-                            Denomination = commentaire.Publication.Utilisateur.Role.Denomination,
-                        },
-                        Localite = new LocaliteDto()
-                        {
-                            IdLocalite = commentaire.Publication.Utilisateur.Localite.IdLocalite,
-                            CP = commentaire.Publication.Utilisateur.Localite.CP,
-                            Longitude = commentaire.Publication.Utilisateur.Localite.Longitude,
-                            Latitude = commentaire.Publication.Utilisateur.Localite.Latitude,
-                            Ville = commentaire.Publication.Utilisateur.Localite.Ville
-                        },
-                        Travail = new TravailDto()
-                        {
-                            IdTravail = commentaire.Publication.Utilisateur.Travail.IdTravail,
-                            Denomination = commentaire.Publication.Utilisateur.Travail.Denomination
-                        }
+                        Prenom = commentaire.Publication.Utilisateur.Prenom
                     }
                 },
             };

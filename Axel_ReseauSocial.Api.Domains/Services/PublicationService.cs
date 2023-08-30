@@ -24,9 +24,11 @@ namespace Axel_ReseauSocial.Api.Domains.Services
                                         .ToList();
         }
 
+
+
         public Publication? Execute(GetOnePublicationQuery query)
         {
-            var publication = _context.Publications.Include(u => u.Utilisateur)
+            Publication? publication = _context.Publications.Include(u => u.Utilisateur)
                 .FirstOrDefault(p => p.IdPublication == query.Id);
 
             return publication;
@@ -52,6 +54,16 @@ namespace Axel_ReseauSocial.Api.Domains.Services
                 return Result.Failure($"L\'insertion de l\'entité {nameof(Publication)} a echouée");
             }
 
+        }
+
+        public IEnumerable<Publication> Execute(GetAllPublicationsByIdUtilisateurQuery query)
+        {
+            IEnumerable<Publication> publications = _context.Publications
+                .Include(p => p.Utilisateur)
+                .Where(p => p.UtilisateurId == query.Id)
+                .ToList();
+
+            return publications;
         }
     }
 }
