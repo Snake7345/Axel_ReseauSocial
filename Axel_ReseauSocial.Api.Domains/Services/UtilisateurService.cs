@@ -18,6 +18,19 @@ namespace Axel_ReseauSocial.Api.Domains.Services
             _context = context;
         }
 
+        public IEnumerable<Utilisateur?> Execute(GetSearchUtilisateurByNameQuery query)
+        {
+            List<Utilisateur> utilisateur =  _context.Utilisateurs
+            .Include(t => t.Travail)
+            .Include(r => r.Role)
+            .Include(l => l.Localite)
+            .ToList()
+            .Where(u => u.Nom == query.Nom)
+            .ToList();
+
+            return utilisateur;
+        }
+
         public Result Execute(RegisterUtilisateurCommand command)
         {
             try
@@ -158,6 +171,7 @@ namespace Axel_ReseauSocial.Api.Domains.Services
                 return Result.Failure($"La suppression de l'entité {nameof(Utilisateur)} a échoué : {ex.Message}");
             }
         }
+
 
     }
 }

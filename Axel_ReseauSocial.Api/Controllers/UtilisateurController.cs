@@ -16,25 +16,22 @@ namespace Axel_ReseauSocial.Api.Controllers
     public class UtilisateurController : ControllerBase
     {
         private readonly IUtilisateurRepository _utilisateurRepository;
-
-        #region Methode terminé
-
         public UtilisateurController(IUtilisateurRepository utilisateurRepository)
         {
             _utilisateurRepository = utilisateurRepository;
         }
-
+        #region Methode terminé
         [HttpPost("registration")]
-        public IActionResult Register([FromBody]RegisterUtilisateurForm form)
+        public IActionResult Register([FromBody] RegisterUtilisateurForm form)
         {
             Result result = _utilisateurRepository.Execute(new RegisterUtilisateurCommand(
                 form.Nom, form.Prenom, form.Email, form.Passwd, form.Sexe, 2, form.LocaliteId, form.TravailId));
             Console.WriteLine(result.ToString());
-            if(result.IsFailure)
+            if (result.IsFailure)
             {
                 return BadRequest(result.Message);
             }
-            return Created("", new {message= "L'utilisateur a bien été créé" });
+            return Created("", new { message = "L'utilisateur a bien été créé" });
         }
 
         // GET: api/Utilisateur
@@ -49,9 +46,9 @@ namespace Axel_ReseauSocial.Api.Controllers
         public async Task<ActionResult<Utilisateur?>> GetUtilisateur(Guid id)
         {
             UtilisateurDto? user = _utilisateurRepository.Execute(new GetOneUtilisateurQuery(id))?.ToUtilisateurDto();
-            if(user is null)
+            if (user is null)
             {
-                return NotFound(new { message= "Utilisateur pas trouvé" } );
+                return NotFound(new { message = "Utilisateur pas trouvé" });
             }
             return Ok(user);
         }
@@ -75,13 +72,9 @@ namespace Axel_ReseauSocial.Api.Controllers
             return Created("", new { message = "L'utilisateur a bien été update" });
         }
 
-
-        #endregion
-
         [HttpPost("connexion")]
         public async Task<IActionResult> Connexion([FromBody] ConnexionInviteForm form)
         {
-           
             try
             {
                 Utilisateur? utilisateur = _utilisateurRepository.Execute(new GetUtilisateurByEmailAndPasswordQuery(form.Email, form.Passwd));
@@ -89,7 +82,7 @@ namespace Axel_ReseauSocial.Api.Controllers
             }
             catch (Exception ex)
             {
-                return Unauthorized(new {ex.Message});
+                return Unauthorized(new { ex.Message });
             }
         }
 
@@ -104,6 +97,31 @@ namespace Axel_ReseauSocial.Api.Controllers
                 return BadRequest(result.Message);
             }
             return Ok(new { message = "L'utilisateur a été supprimé" });
+        }
+
+
+        #endregion
+
+        [HttpPost("search")]
+        public async Task<ActionResult<IEnumerable<Utilisateur>>> Search([FromBody] SearchAllUtilisateurByNameForm form)
+        {
+            try
+            {
+                IEnumerable<Utilisateur?> utilisateur = _utilisateurRepository.Execute(new GetSearchUtilisateurByNameQuery(form.Nom));
+
+                if (utilisateur != null)
+                {
+                    return Ok(utilisateur.ToUtilisateurDto());
+                }
+                else
+                {
+                    return NotFound("Aucun utilisateur trouvé pour le nom spécifié.");
+                }
+            }
+            catch (Exception ex)
+            {
+                return Unauthorized(new { ex.Message });
+            }
         }
     }
 }
